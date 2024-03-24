@@ -1,0 +1,10 @@
+TODO清書する
+
+実行コマンド
+go run main.go
+
+テスト　curlコマンドかポストマン
+curl http://localhost:8080/
+
+ポート
+8080
