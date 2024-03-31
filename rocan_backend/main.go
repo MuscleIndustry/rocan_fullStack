@@ -42,15 +42,16 @@ func main() {
 
 	// マイグレーションの実行
 	log.Println("マイグレーションを開始します...")
-	db.AutoMigrate(&models.User{}, &models.Post{}, &models.Comment{})
-	log.Println("マイグレーションが完了しました。")
-
 	if err := db.AutoMigrate(&models.User{}, &models.Post{}, &models.Comment{}); err != nil {
 		log.Fatalf("マイグレーションに失敗しました: %v", err)
 	}
+	log.Println("マイグレーションが完了しました。")
 
 	// Ginルーターの初期化
 	r := gin.Default()
+
+	// db変数をpostsパッケージの変数に代入
+	posts.Db = db
 
 	// ルートエンドポイント
 	r.GET("/", func(c *gin.Context) {
