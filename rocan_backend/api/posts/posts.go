@@ -11,7 +11,7 @@ var Db *gorm.DB
 
 // RegisterPostsRoutes は投稿関連のルートを登録します。
 func RegisterPostsRoutes(r *gin.RouterGroup) {
-	r.GET("/posts", getPostsInfo) // 既存のエンドポイント
+	r.GET("/posts/info", getPostsInfo) // 既存のエンドポイント
 	r.GET("/posts/list", listPosts)
 	r.POST("/posts/create", createPost)
 	r.PUT("/posts/edit/:postID", editPost)

@@ -16,11 +16,15 @@ services:
       MYSQL_PASSWORD: $MYSQL_PASSWORD
 
   backend:
-    build: ./rocan_backend
+    build:
+      context: ./rocan_backend
+      target: development
+      # target: production　本番用のビルド
     ports:
       - "8080:8080"
     volumes:
       - ./rocan_backend:/app
+      - .air.toml:/app/.air.toml
     env_file:
       - .env
     environment:
