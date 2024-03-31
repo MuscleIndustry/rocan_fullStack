@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["generouted", "gonic", "rocan"]
+  "cSpell.words": [
+    "generouted",
+    "gonic",
+    "gorm",
+    "mydatabase",
+    "rocan",
+    "varchar"
+  ]
 }

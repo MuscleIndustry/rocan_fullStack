@@ -1,10 +1,13 @@
-TODO清書する
+TODO 清書する
 
 実行コマンド
 go run main.go
 
-テスト　curlコマンドかポストマン
+テスト　 curl コマンドかポストマン
 curl http://localhost:8080/
 
 ポート
 8080
+
+マイグレーションファイルの適用
+goose -dir db/migrations mysql "user:password@/dbname" up

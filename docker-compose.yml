@@ -1,14 +1,19 @@
 version: "3.8"
+
 services:
   db:
     image: mysql:8.3
+    volumes:
+      - ./mysql:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
+    env_file:
+      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
 
   backend:
     build: ./rocan_backend
@@ -16,6 +21,16 @@ services:
       - "8080:8080"
     volumes:
       - ./rocan_backend:/app
+    env_file:
+      - .env
+    environment:
+      DB_HOST: $DB_HOST
+      DB_PORT: $DB_PORT
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+    depends_on:
+      - db
 
   frontend:
     build: ./rocan_frontend
@@ -23,8 +38,12 @@ services:
       - "5173:5173"
     volumes:
       - ./rocan_frontend:/app
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf # カスタムNginx設定ファイルのマウント
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/error/custom_404.html:/etc/nginx/html/custom_404.html
       - ./nginx/error/custom_50x.html:/etc/nginx/html/custom_50x.html
     depends_on:
       - backend
+
+networks:
+  default:
+    name: my_custom_network

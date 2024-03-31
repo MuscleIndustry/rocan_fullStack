@@ -6,8 +6,17 @@ redome書く
 ローカルDBをDocker上で動かす
 テーブル作る
 SwaggerでAPI仕様書を書く
-APIをフロントエンドにつなぎこむ
-モノレポ化したのでバックエンドだけの変更でフロントのgitActionが走らないようにする
+APIをフロントエンドックエンドだけの変更でフロントのgitActionが走らないようにする
 goのlintやtestについて考える
 
-本番DBはどうするか調べる
+本番DBはどうするか調べる gorm?
+につなぎこむ
+モノレポ化したのでバ
+
+Docker停止と削除
+ docker-compose down --rmi all
+ Docker立ち上げ
+ docker-compose up --build
+
+
+外部認証ログイン機能の実装には goth を使う予定
